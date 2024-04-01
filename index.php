@@ -15,6 +15,7 @@
 </head>
 
 <body>
+  <?php include 'connection.php'; ?>
   <nav class="navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container-fluid">
