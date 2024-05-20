@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <title>Objavuj Svet | Registrácia</title>
 </head>
 <body>
-<?php include_once "include/header.php"; ?>
+<?php include_once "includes/header.php"; ?>
 <br><br>
 <section class="vh-100">
   <div class="container-fluid">
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
   </div>
 </section>
-<?php include_once "include/footer.php";?>
+<?php include_once "includes/footer.php";?>
 <script src="js/app.js"></script>
   <script src="https://kit.fontawesome.com/e3fb291045.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
