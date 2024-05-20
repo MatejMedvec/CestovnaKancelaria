@@ -14,7 +14,7 @@
   <title>Objavuj Svet | O nás</title>
 </head>
 <body>
-  <?php include("header.php"); ?>
+  <?php include_once "includes/header.php"; ?>
   <div class="container mt-5 mb-5 text-center py-5">
     <div class="container w-75">
       <h1 class="pt-5 text text-uppercase fw-bold">kto sme</h1>
@@ -82,7 +82,7 @@
       </div>
     </div>
   </div>
-  <?php include("footer.php");?>
+  <?php include_once "includes/footer.php";?>
   <button onclick="topFunction()" id="myBtn" title="Go to top">Naspäť</button>
 </body>
 <script src="js/app.js"></script>
