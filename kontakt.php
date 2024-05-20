@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <?php include("header.php"); ?>
+  <?php include_once "includes/header.php"; ?>
   <div class="body">
     <div class="container text-center py-5 mt mt-sm-5">
       <nav aria-label="breadcrumb">
@@ -55,7 +55,7 @@
       </div>
     </div>
   </div>
-  <?php include("footer.php"); ?>
+  <?php include_once "includes/footer.php"; ?>
   <button onclick="topFunction()" id="myBtn" title="Go to top">Naspäť</button>
   <script src="js/app.js"></script>
   <script src="https://kit.fontawesome.com/e3fb291045.js" crossorigin="anonymous"></script>
