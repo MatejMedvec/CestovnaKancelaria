@@ -1,5 +1,21 @@
+<?php 
+require_once "includes/db_connection.php";
+require_once "includes/class.php";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $title = $_POST['title'];
+  $content = $_POST['content'];
+  $author = $_POST['author'];
+  $image_url = $_POST['image_url'];
+  $date_posted = date('Y-m-d');
+
+
+  $post = new BlogPost($title, $content, $author, $image_url);
+  $post->insert();
+}
+?>
 <!DOCTYPE html>
 <html lang="sk">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,17 +28,40 @@
   <link href="https://fonts.googleapis.com/css2?family=YourFont&display=swap" rel="stylesheet">
   <title>Objavuj Svet | Blog</title>
 </head>
+
 <body>
-  <?php include("header.php"); ?>
+  <?php include_once "includes/header.php"; ?>
   <div class="body">
     <div class="container text-center py-5 mt mt-sm-5">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Domov</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Domov</a></li>
           <li class="breadcrumb-item active" aria-current="page">Blog</li>
         </ol>
       </nav>
     </div>
+    <div class="container" id="postBlog">
+    <form action="blog.php" method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">Názov</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">Popis</label>
+            <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">Autor</label>
+            <input type="text" class="form-control" id="author" name="author" required>
+        </div>
+        <div class="mb-3">
+            <label for="image_url" class="form-label">Image URL</label>
+            <input type="text" class="form-control" id="image_url" name="image_url" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Odoslať</button>
+    </form>
+</div>
+<br>
     <div class="container mb-5">
       <div class="row">
         <div class="container" id="container4">
@@ -58,10 +97,11 @@
       </div>
     </div>
   </div>
-  <?php include("footer.php"); ?>
+  <?php include_once 'includes/footer.php'; ?>
   </div>
   <button onclick="topFunction()" id="myBtn" title="Go to top">Naspäť</button>
 </body>
+
 <script src="js/app.js"></script>
 <script src="https://kit.fontawesome.com/e3fb291045.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
