@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <?php include("header.php"); ?>
+    <?php include_once "includes/header.php"; ?>
     <div class="container text-center py-5 mt mt-sm-5">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -30,7 +30,7 @@
             <p>Vaša správa bola úspešne prijatá.</p>
         </div>
     </div>
-    <?php include("footer.php"); ?>
+    <?php include_once "includes/footer.php"; ?>
     <script src="js/app.js"></script>
     <script src="https://kit.fontawesome.com/e3fb291045.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
