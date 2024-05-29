@@ -1,14 +1,14 @@
 <?php
+session_start();
+$error = isset($_SESSION['error']) ? $_SESSION['error'] : '';
+unset($_SESSION['error']);
+
 require_once 'includes/db_connection.php';
 require_once 'includes/class.php'; 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $email = $_POST['email'];
-  $password = $_POST['heslo'];
+$user = new User($conn);
+$user->handleRequest();
 
-  $user = new User($conn);
-  $user->login($email, $password);
-}
 ?>
 <!DOCTYPE html>
 <html lang="sk">
@@ -34,12 +34,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
         <form id="contact" method="post">
           <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Prihlásenie</h3>
+
+          <?php if (!empty($error)): ?>
+            <div class="alert alert-danger" role="alert">
+              <?php echo $error; ?>
+            </div>
+          <?php endif; ?>
+
           <div data-mdb-input-init class="form-outline mb-4">
-            <input type="email" id="email" class="form-control form-control-lg" name="email" required/>
+            <input type="email" id="email" class="form-control form-control-lg" name="email"/>
             <label class="form-label" for="form2Example18">E-mail</label>
           </div>
           <div data-mdb-input-init class="form-outline mb-4">
-            <input type="password" id="heslo" class="form-control form-control-lg" name="heslo" required/>
+            <input type="password" id="heslo" class="form-control form-control-lg" name="heslo"/>
             <label class="form-label" for="form2Example28">Heslo</label>
           </div>
           <div class="pt-1 mb-4">

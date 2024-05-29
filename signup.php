@@ -1,36 +1,13 @@
 <?php
-require_once 'include/db_connection.php'; 
+session_start();
+$error = isset($_SESSION['error']) ? $_SESSION['error'] : '';
+unset($_SESSION['error']);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['meno']; 
-    $email = $_POST['email'];
-    $password = $_POST['heslo'];
+require_once 'includes/db_connection.php'; 
+require_once 'includes/class.php';
 
-    if (empty($username) || empty($email) || empty($password)) {
-      header("Location: signup.php?error=emptyfields");
-      exit;
-  } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      header("Location: signup.php?error=invalidemail");
-      exit;
-  } else {
-      $stmt = $conn->prepare("SELECT username FROM users WHERE username=:username");
-      $stmt->execute(['username' => $username]);
-      if ($stmt->rowCount() > 0) {
-          header("Location: signup.php?error=usertaken");
-          exit;
-      }
-  }
-
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    $stmt = $conn->prepare("INSERT INTO users (username, email, heslo) VALUES (:username, :email, :heslo)");
-    $stmt->execute(['username' => $username, 'email' => $email, 'heslo' => $hashed_password]);
-
-    echo "User created successfully";
-
-    header('Location: login.php');
-    exit;
-}
+$signupHandler = new SignupHandler($conn);
+$signupHandler->handleRequest();
 ?>
 
 <!DOCTYPE html>
@@ -57,22 +34,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
           <form id="contact" method="post">
             <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Registrácia</h3>
+            
+            <?php if ($error): ?>
+                <div class="alert alert-danger">
+                    <?php echo htmlspecialchars($error); ?>
+                </div>
+            <?php endif; ?>
+            
             <div data-mdb-input-init class="form-outline mb-4">
-              <input type="name" id="meno" class="form-control form-control-lg" name="meno" required/>
-              <label class="form-label" for="form2Example18">Meno</label>
+              <input type="text" id="meno" class="form-control form-control-lg" name="meno"/>
+              <label class="form-label" for="meno">Meno</label>
             </div>
             <div data-mdb-input-init class="form-outline mb-4">
-            <input type="email" id="email" class="form-control form-control-lg" name="email" required/>
-            <label class="form-label" for="form2Example18">E-mail</label>
-          </div>
-          <div data-mdb-input-init class="form-outline mb-4">
-            <input type="password" id="heslo" class="form-control form-control-lg" name="heslo" required/>
-            <label class="form-label" for="form2Example28">Heslo</label>
-          </div>
+              <input type="email" id="email" class="form-control form-control-lg" name="email"/>
+              <label class="form-label" for="email">E-mail</label>
+            </div>
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input type="password" id="heslo" class="form-control form-control-lg" name="heslo"/>
+              <label class="form-label" for="heslo">Heslo</label>
+            </div>
             <div class="pt-1 mb-4">
               <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" type="submit">Vytvoriť účet</button>
             </div>
-            <p>Máte už účet? <a href="login.php" class="link-info">tu</a></p>
+            <p>Máte už účet? <a href="login.php" class="link-info">Prihláste sa tu</a></p>
           </form>
         </div>
       </div>
@@ -83,10 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
   </div>
 </section>
-<?php include_once "includes/footer.php";?>
+<?php include_once "includes/footer.php"; ?>
 <script src="js/app.js"></script>
-  <script src="https://kit.fontawesome.com/e3fb291045.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+<script src="https://kit.fontawesome.com/e3fb291045.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
 </body>

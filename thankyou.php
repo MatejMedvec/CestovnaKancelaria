@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="sk">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,13 +12,12 @@
     <link href="https://fonts.googleapis.com/css2?family=YourFont&display=swap" rel="stylesheet">
     <title>Objavuj Svet | Kontakt</title>
 </head>
-
-<body>
+<body class="d-flex flex-column vh-100">
     <?php include_once "includes/header.php"; ?>
     <div class="container text-center py-5 mt mt-sm-5">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Domov</a></li>
+                <li class="breadcrumb-item"><a href="index.php">Domov</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Kontakt</li>
             </ol>
         </nav>
@@ -37,5 +35,4 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 </body>
-
 </html>

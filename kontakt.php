@@ -16,11 +16,12 @@
 
 <body>
   <?php include_once "includes/header.php"; ?>
+  <br><br><br>
   <div class="body">
     <div class="container text-center py-5 mt mt-sm-5">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Domov</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Domov</a></li>
           <li class="breadcrumb-item active" aria-current="page">Kontakt</li>
         </ol>
       </nav>

@@ -19,7 +19,7 @@
     <div class="container text-center py-5 mt mt-sm-5">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Domov</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Domov</a></li>
           <li class="breadcrumb-item active" aria-current="page">Galéria</li>
         </ol>
       </nav>
@@ -127,7 +127,7 @@
     </div>
   </div>
   </div>
-  <?php include_once "includes/footer.php"; ?>
+  <?php include_once 'includes/footer.php'; ?>
   </div>
   <button onclick="topFunction()" id="myBtn" title="Go to top">Naspäť</button>
   <script src="js/app.js"></script>
